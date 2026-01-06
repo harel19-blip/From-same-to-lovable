@@ -1,0 +1,112 @@
+"use client";
+
+/**
+ * FounderSection Component
+ * Highlights the company founder with bio and credentials
+ */
+
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { Quote } from "lucide-react";
+import { ASSETS } from "@/lib/constants";
+
+export function FounderSection() {
+  const t = useTranslations();
+
+  return (
+    <section
+      className="section-padding bg-white"
+      aria-labelledby="founder-title"
+    >
+      <div className="container-wide">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Image Column */}
+          <figure className="relative order-2 lg:order-1">
+            {/* Main image */}
+            <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src={ASSETS.founder}
+                alt={t("founder.name")}
+                fill
+                className="object-cover object-center"
+                style={{ objectPosition: "center 20%" }}
+              />
+            </div>
+
+            {/* Accent element */}
+            <div
+              className="absolute -bottom-4 -end-4 w-32 h-32 bg-[#1a6fc9]/20 rounded-lg -z-10"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -top-4 -start-4 w-24 h-24 bg-[#0f172a]/5 rounded-lg -z-10"
+              aria-hidden="true"
+            />
+          </figure>
+
+          {/* Content Column */}
+          <article className="order-1 lg:order-2">
+            <div className="w-16 h-1 bg-[#1a6fc9] mb-6" aria-hidden="true" />
+            <h2 id="founder-title" className="text-[#0f172a] mb-6">
+              {t("founder.title")}
+            </h2>
+
+            {/* Quote */}
+            <blockquote className="relative mb-8">
+              <Quote
+                className="absolute -start-2 -top-2 w-10 h-10 text-slate-200"
+                aria-hidden="true"
+              />
+              <p className="text-xl lg:text-2xl text-slate-700 italic leading-relaxed ps-8">
+                "{t("founder.quote")}"
+              </p>
+            </blockquote>
+
+            {/* Founder Info */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-[#0f172a] mb-1">
+                {t("founder.name")}
+              </h3>
+              <p className="text-[#1a6fc9] mb-4">
+                {t("founder.role")}
+              </p>
+              <p className="text-slate-600 leading-relaxed">
+                {t("founder.bio")}
+              </p>
+            </div>
+
+            {/* Credentials */}
+            <div className="grid grid-cols-2 gap-4 mb-8" role="list" aria-label="Credentials">
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#0f172a] mb-1">
+                  {t("founder.experience")}
+                </div>
+                <div className="text-sm text-slate-600">
+                  {t("founder.experienceLabel")}
+                </div>
+              </div>
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#0f172a] mb-1">
+                  {t("founder.teamsLed")}
+                </div>
+                <div className="text-sm text-slate-600">
+                  {t("founder.teamsLedLabel")}
+                </div>
+              </div>
+            </div>
+
+            <Button
+              asChild
+              variant="outline"
+              className="border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white"
+            >
+              <Link href="/about#founder">{t("founder.readProfile")}</Link>
+            </Button>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
