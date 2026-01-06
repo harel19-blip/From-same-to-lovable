@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+export const metadata: Metadata = {
+  title: "SouliSea | International Maritime Operations",
+  description:
+    "SouliSea - International maritime services specializing in rescue operations, offshore missions, environmental protection, and professional crew assembly. Where soul meets sea.",
+  keywords: [
+    "SouliSea",
+    "maritime operations",
+    "rescue missions",
+    "offshore operations",
+    "maritime services",
+    "ocean protection",
+    "crew assembly",
+    "environmental missions",
+    "Harel Fishman",
+  ],
+  authors: [{ name: "Harel Fishman" }],
+  openGraph: {
+    title: "SouliSea | International Maritime Operations",
+    description:
+      "International maritime services specializing in rescue operations, offshore missions, and environmental protection. Where soul meets sea.",
+    type: "website",
+    locale: "en_US",
+  },
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
+};
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const isRTL = locale === "he";
+
+  return (
+    <html lang={locale} dir={isRTL ? "rtl" : "ltr"} className={inter.variable}>
+      <body className="font-sans antialiased">
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <main className="pt-16 lg:pt-20">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
