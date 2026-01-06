@@ -1,0 +1,87 @@
+"use client";
+
+/**
+ * SectorsSection Component
+ * Displays the 4 industry sectors served
+ * Uses shared data and maintains consistent styling
+ */
+
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { ChevronRight } from "lucide-react";
+import { sectors } from "@/data";
+
+export function SectorsSection() {
+  const t = useTranslations();
+
+  return (
+    <section
+      className="section-padding bg-navy"
+      aria-labelledby="sectors-title"
+    >
+      <div className="container-wide">
+        {/* Section Header */}
+        <header className="text-center mb-12">
+          <div className="w-16 h-1 bg-stone-400 mb-6 mx-auto" aria-hidden="true" />
+          <h2 id="sectors-title" className="text-white mb-4">
+            {t("sectors.title")}
+          </h2>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            {t("sectors.subtitle")}
+          </p>
+        </header>
+
+        {/* Sectors Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6" role="list">
+          {sectors.map((sector) => (
+            <Link
+              key={sector.id}
+              href={sector.href}
+              className="group relative overflow-hidden rounded-lg bg-navy-light h-80"
+              role="listitem"
+            >
+              {/* Background image */}
+              <Image
+                src={sector.image}
+                alt=""
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                aria-hidden="true"
+              />
+
+              {/* Gradient overlay */}
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/60 to-transparent"
+                aria-hidden="true"
+              />
+
+              {/* Content */}
+              <div className="relative p-8 lg:p-10 h-full flex flex-col justify-end">
+                <h3 className="text-xl lg:text-2xl font-semibold text-white mb-3 group-hover:text-slate-200 transition-colors">
+                  {t(sector.titleKey)}
+                </h3>
+                <p className="text-slate-300 text-sm lg:text-base leading-relaxed mb-4 max-w-lg">
+                  {t(sector.descriptionKey)}
+                </p>
+                <div className="flex items-center text-sm font-medium text-stone-400 group-hover:text-white transition-colors">
+                  {t("sectors.exploreSector")}
+                  <ChevronRight
+                    className="w-4 h-4 ml-1 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+
+              {/* Hover effect */}
+              <div
+                className="absolute inset-0 border-2 border-transparent group-hover:border-stone-400/30 rounded-lg transition-colors"
+                aria-hidden="true"
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
