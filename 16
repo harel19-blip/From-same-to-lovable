@@ -1,0 +1,121 @@
+"use client";
+
+/**
+ * FeaturedMissions Component
+ * Displays featured mission case studies
+ * Uses shared data and maintains consistent styling
+ */
+
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, ChevronRight } from "lucide-react";
+import { featuredMissions } from "@/data";
+
+export function FeaturedMissions() {
+  const t = useTranslations();
+
+  return (
+    <section
+      className="section-padding bg-slate-50"
+      aria-labelledby="missions-title"
+    >
+      <div className="container-wide">
+        {/* Section Header */}
+        <header className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+          <div className="max-w-2xl mb-6 md:mb-0">
+            <div className="accent-line" aria-hidden="true" />
+            <h2 id="missions-title" className="text-navy mb-4">
+              Featured Missions
+            </h2>
+            <p className="text-lg text-slate-600">
+              Select operations demonstrating our capabilities across diverse
+              maritime environments and mission types.
+            </p>
+          </div>
+          <Button
+            asChild
+            variant="outline"
+            className="border-navy text-navy hover:bg-navy hover:text-white self-start md:self-auto"
+          >
+            <Link href="/missions">
+              View all missions
+              <ChevronRight className="w-4 h-4 ml-1" aria-hidden="true" />
+            </Link>
+          </Button>
+        </header>
+
+        {/* Missions Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" role="list">
+          {featuredMissions.map((mission) => (
+            <Card
+              key={mission.id}
+              className="group bg-white border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
+              role="listitem"
+            >
+              {/* Image */}
+              <div className="relative h-48">
+                <Image
+                  src={mission.image}
+                  alt=""
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-0 bg-navy/20" aria-hidden="true" />
+                <Badge
+                  variant="secondary"
+                  className="absolute top-4 left-4 bg-white/90 text-navy text-xs"
+                >
+                  {mission.type}
+                </Badge>
+              </div>
+
+              <CardContent className="p-6">
+                {/* Location */}
+                <div className="flex items-center text-sm text-slate-500 mb-3">
+                  <MapPin className="w-4 h-4 mr-1.5" aria-hidden="true" />
+                  <span>{mission.location} • {mission.environment}</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-navy mb-3 group-hover:text-slate-700 transition-colors">
+                  {mission.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                  {mission.description}
+                </p>
+
+                {/* Outcome */}
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-slate-500 uppercase tracking-wider">
+                        Outcome
+                      </span>
+                      <p className="text-sm font-medium text-navy">
+                        {mission.outcome}
+                      </p>
+                    </div>
+                    <Link
+                      href={mission.href}
+                      className="text-sm font-medium text-navy hover:text-slate-700 flex items-center"
+                    >
+                      Details
+                      <ChevronRight className="w-4 h-4 ml-1" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
