@@ -1,0 +1,260 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Ship,
+  LifeBuoy,
+  TreePine,
+  Cpu,
+  Users,
+  ChevronRight,
+  CheckCircle2,
+  ArrowRight,
+} from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Services | Maritime Operations",
+  description:
+    "Comprehensive maritime services including rescue operations, offshore support, environmental missions, and specialized crew assembly.",
+};
+
+const services = [
+  {
+    id: "maritime",
+    icon: Ship,
+    title: "Maritime Operations",
+    subtitle: "Complex Offshore & Open-Sea Operations",
+    description:
+      "Full-spectrum maritime operational support for complex offshore and open-sea environments. We provide vessel support, marine logistics, specialized maritime services, and comprehensive operational execution.",
+    capabilities: [
+      "Offshore platform support and logistics",
+      "Vessel operations and management",
+      "Marine construction support",
+      "Subsea operations coordination",
+      "Port and harbor operations",
+      "Towage and heavy lift support",
+    ],
+    relevance:
+      "Critical for offshore energy, marine construction, and port development projects requiring reliable, professional maritime support.",
+  },
+  {
+    id: "rescue",
+    icon: LifeBuoy,
+    title: "Rescue & Emergency Response",
+    subtitle: "Rapid Deployment Life-Saving Operations",
+    description:
+      "When lives are at stake, we deploy immediately. Our rescue and emergency response teams are trained for the most demanding scenarios—from open-sea rescue in severe weather to emergency extraction and crisis management.",
+    capabilities: [
+      "Open-sea rescue operations",
+      "Emergency vessel response",
+      "Crisis management coordination",
+      "Medical evacuation support",
+      "Search and rescue missions",
+      "Disaster response deployment",
+    ],
+    relevance:
+      "Essential for maritime emergencies, vessel distress situations, and humanitarian response requiring immediate, professional action.",
+  },
+  {
+    id: "environmental",
+    icon: TreePine,
+    title: "Environmental Missions",
+    subtitle: "Ocean Protection & Sustainability",
+    description:
+      "Dedicated to protecting marine environments. We execute environmental monitoring, cleanup operations, and sustainability projects that balance operational needs with ecological responsibility.",
+    capabilities: [
+      "Marine environmental monitoring",
+      "Oil spill response and cleanup",
+      "Ecosystem assessment support",
+      "Pollution control operations",
+      "Conservation project execution",
+      "Environmental compliance support",
+    ],
+    relevance:
+      "Vital for organizations committed to environmental stewardship, regulatory compliance, and marine ecosystem protection.",
+  },
+  {
+    id: "technology",
+    icon: Cpu,
+    title: "Technology Solutions",
+    subtitle: "Hybrid Maritime-Tech Integration",
+    description:
+      "Bridging maritime operations with advanced technology. We support missions requiring specialized tech integration, advanced monitoring systems, and innovation-driven operational approaches.",
+    capabilities: [
+      "ROV and drone operation support",
+      "Advanced monitoring systems deployment",
+      "Data collection and analysis missions",
+      "Technology integration at sea",
+      "Research platform support",
+      "Communications infrastructure",
+    ],
+    relevance:
+      "Essential for research institutions, technology companies, and operations requiring cutting-edge maritime-tech integration.",
+  },
+  {
+    id: "crew",
+    icon: Users,
+    title: "Crew Assembly & Mission Planning",
+    subtitle: "Mission-Specific Professional Teams",
+    description:
+      "Every mission is unique. We assemble specialized crews from our network of vetted maritime professionals, matching expertise to specific operational requirements and ensuring team cohesion.",
+    capabilities: [
+      "Mission-specific team assembly",
+      "Professional vetting and certification",
+      "Specialized expertise matching",
+      "Comprehensive mission planning",
+      "Logistics and deployment coordination",
+      "On-mission management support",
+    ],
+    relevance:
+      "Critical for clients requiring tailored teams with specific expertise, certifications, and experience profiles.",
+  },
+];
+
+export default function ServicesPage() {
+  return (
+    <>
+      {/* PAGE HERO [CORE] */}
+      <section className="relative bg-navy py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="container-wide relative">
+          <div className="max-w-3xl">
+            <div className="w-16 h-1 bg-stone-400 mb-8" />
+            <h1 className="text-white mb-6">Our Capabilities</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              Full-spectrum maritime services designed for high-stakes,
+              mission-critical operations. Each service area represents
+              deep expertise and proven operational capability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES OVERVIEW */}
+      <section className="section-padding bg-slate-50">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6">
+            {services.map((service) => (
+              <a
+                key={service.id}
+                href={`#${service.id}`}
+                className="group p-6 bg-white rounded-lg border border-slate-200 hover:border-navy hover:shadow-md transition-all text-center"
+              >
+                <service.icon className="w-8 h-8 text-navy mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                <h4 className="text-sm font-medium text-navy">{service.title}</h4>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICE DETAILS [CORE] */}
+      {services.map((service, index) => (
+        <section
+          key={service.id}
+          id={service.id}
+          className={`section-padding ${index % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
+        >
+          <div className="container-wide">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Content */}
+              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                <div className="accent-line" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 bg-navy/10 rounded-lg flex items-center justify-center">
+                    <service.icon className="w-7 h-7 text-navy" />
+                  </div>
+                  <div>
+                    <h2 className="text-navy">{service.title}</h2>
+                  </div>
+                </div>
+                <p className="text-lg text-slate-600 font-medium mb-4">
+                  {service.subtitle}
+                </p>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  {service.description}
+                </p>
+
+                {/* Mission Relevance */}
+                <div className="p-4 bg-navy/5 rounded-lg mb-6">
+                  <h5 className="text-sm font-semibold text-navy uppercase tracking-wider mb-2">
+                    Mission Relevance
+                  </h5>
+                  <p className="text-sm text-slate-600">{service.relevance}</p>
+                </div>
+
+                <Button
+                  asChild
+                  className="bg-navy text-white hover:bg-navy-light"
+                >
+                  <Link href="/contact">
+                    Discuss Your Requirements
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Capabilities */}
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                <Card className="bg-slate-50 border-slate-200">
+                  <CardContent className="p-8">
+                    <h4 className="text-lg font-semibold text-navy mb-6">
+                      Capability Highlights
+                    </h4>
+                    <ul className="space-y-4">
+                      {service.capabilities.map((capability) => (
+                        <li key={capability} className="flex items-start">
+                          <CheckCircle2 className="w-5 h-5 text-navy mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-slate-700">{capability}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Image placeholder */}
+                <div className="mt-6 aspect-video bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg overflow-hidden">
+                  <div className="w-full h-full bg-navy/10 flex items-center justify-center">
+                    <span className="text-slate-500">Service Image</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* CTA */}
+      <section className="section-padding bg-navy">
+        <div className="container-wide text-center">
+          <h2 className="text-white mb-6">Ready to Discuss Your Mission?</h2>
+          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+            Every operation is unique. Contact us to discuss your specific
+            requirements and how our capabilities can support your objectives.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-navy hover:bg-slate-100"
+            >
+              <Link href="/contact">Contact Our Team</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Link href="/missions">
+                View Our Missions
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
