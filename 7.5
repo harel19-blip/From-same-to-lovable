@@ -1,0 +1,292 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MapPin, Calendar, ChevronRight, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Missions | Maritime Operations",
+  description:
+    "Explore our completed maritime operations, rescue missions, and environmental projects worldwide.",
+};
+
+const missions = [
+  {
+    id: "north-atlantic-rescue",
+    title: "North Atlantic Rescue Operation",
+    type: "Rescue & Emergency",
+    environment: "Open Sea",
+    location: "North Atlantic",
+    year: "2024",
+    description:
+      "Emergency rescue operation in severe weather conditions. Rapid deployment of specialized team for distressed vessel crew extraction.",
+    role: "Full rescue coordination and execution",
+    outcome: "All 12 crew members recovered safely",
+  },
+  {
+    id: "mediterranean-platform",
+    title: "Mediterranean Platform Support",
+    type: "Maritime Operations",
+    environment: "Offshore",
+    location: "Mediterranean Sea",
+    year: "2024",
+    description:
+      "Extended logistics and crew rotation support for offshore energy platform during critical installation phase.",
+    role: "Logistics coordination and personnel transport",
+    outcome: "Zero operational downtime achieved",
+  },
+  {
+    id: "pacific-environmental",
+    title: "Pacific Environmental Survey",
+    type: "Environmental",
+    environment: "Open Sea",
+    location: "Pacific Ocean",
+    year: "2024",
+    description:
+      "Comprehensive marine environmental monitoring mission supporting international conservation research initiative.",
+    role: "Survey execution and data collection",
+    outcome: "Critical ecosystem data collected",
+  },
+  {
+    id: "north-sea-tech",
+    title: "North Sea Technology Deployment",
+    type: "Technology",
+    environment: "Offshore",
+    location: "North Sea",
+    year: "2023",
+    description:
+      "Advanced monitoring system deployment for offshore wind farm development project requiring specialized tech integration.",
+    role: "Technology installation and calibration",
+    outcome: "Systems operational ahead of schedule",
+  },
+  {
+    id: "caribbean-cleanup",
+    title: "Caribbean Environmental Response",
+    type: "Environmental",
+    environment: "Coastal",
+    location: "Caribbean Sea",
+    year: "2023",
+    description:
+      "Rapid environmental response mission for marine pollution incident requiring immediate containment and cleanup.",
+    role: "Incident response and cleanup coordination",
+    outcome: "Environmental impact minimized",
+  },
+  {
+    id: "arabian-gulf-ops",
+    title: "Arabian Gulf Operations Support",
+    type: "Maritime Operations",
+    environment: "Offshore",
+    location: "Arabian Gulf",
+    year: "2023",
+    description:
+      "Complex multi-vessel coordination for major offshore infrastructure project in challenging operational conditions.",
+    role: "Operations management and coordination",
+    outcome: "Project milestones delivered on schedule",
+  },
+  {
+    id: "emergency-medevac",
+    title: "Emergency Medical Evacuation",
+    type: "Rescue & Emergency",
+    environment: "Open Sea",
+    location: "Indian Ocean",
+    year: "2023",
+    description:
+      "Time-critical medical evacuation from remote vessel requiring helicopter coordination and medical support.",
+    role: "Medical evacuation coordination",
+    outcome: "Patient safely transferred for treatment",
+  },
+  {
+    id: "research-vessel-support",
+    title: "Research Vessel Expedition Support",
+    type: "Technology",
+    environment: "Open Sea",
+    location: "Southern Ocean",
+    year: "2022",
+    description:
+      "Technical and operational support for scientific research expedition in extreme Antarctic conditions.",
+    role: "Expedition support and technical services",
+    outcome: "Research objectives fully achieved",
+  },
+];
+
+const missionTypes = [
+  { value: "all", label: "All Missions" },
+  { value: "Rescue & Emergency", label: "Rescue & Emergency" },
+  { value: "Maritime Operations", label: "Maritime Operations" },
+  { value: "Environmental", label: "Environmental" },
+  { value: "Technology", label: "Technology" },
+];
+
+export default function MissionsPage() {
+  return (
+    <>
+      {/* PAGE HERO [CORE] */}
+      <section className="relative bg-navy py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="container-wide relative">
+          <div className="max-w-3xl">
+            <div className="w-16 h-1 bg-stone-400 mb-8" />
+            <h1 className="text-white mb-6">Our Missions</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              Select operations demonstrating our capabilities across diverse
+              maritime environments, mission types, and global locations.
+              Every mission represents our commitment to excellence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* MISSIONS GRID [CORE] */}
+      <section className="section-padding bg-slate-50">
+        <div className="container-wide">
+          {/* Filter Tabs */}
+          <Tabs defaultValue="all" className="mb-10">
+            <TabsList className="bg-white border border-slate-200 p-1">
+              {missionTypes.map((type) => (
+                <TabsTrigger
+                  key={type.value}
+                  value={type.value}
+                  className="data-[state=active]:bg-navy data-[state=active]:text-white px-4"
+                >
+                  {type.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {missionTypes.map((type) => (
+              <TabsContent key={type.value} value={type.value} className="mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {missions
+                    .filter(
+                      (mission) =>
+                        type.value === "all" || mission.type === type.value
+                    )
+                    .map((mission) => (
+                      <Card
+                        key={mission.id}
+                        className="group bg-white border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                      >
+                        {/* Image placeholder */}
+                        <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300">
+                          <div className="absolute inset-0 bg-navy/20" />
+                          <Badge
+                            variant="secondary"
+                            className="absolute top-4 left-4 bg-white/90 text-navy text-xs"
+                          >
+                            {mission.type}
+                          </Badge>
+                          <Badge
+                            variant="secondary"
+                            className="absolute top-4 right-4 bg-navy/80 text-white text-xs"
+                          >
+                            {mission.environment}
+                          </Badge>
+                        </div>
+
+                        <CardContent className="p-6">
+                          {/* Meta */}
+                          <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
+                            <span className="flex items-center">
+                              <MapPin className="w-4 h-4 mr-1" />
+                              {mission.location}
+                            </span>
+                            <span className="flex items-center">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              {mission.year}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h4 className="text-lg font-semibold text-navy mb-3 group-hover:text-slate-700 transition-colors">
+                            {mission.title}
+                          </h4>
+
+                          {/* Description */}
+                          <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                            {mission.description}
+                          </p>
+
+                          {/* Outcome */}
+                          <div className="pt-4 border-t border-slate-100">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <span className="text-xs text-slate-500 uppercase tracking-wider">
+                                  Outcome
+                                </span>
+                                <p className="text-sm font-medium text-navy">
+                                  {mission.outcome}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </div>
+      </section>
+
+      {/* MISSION APPROACH */}
+      <section className="section-padding bg-white">
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="accent-line-center" />
+            <h2 className="text-navy mb-6">Mission Confidentiality</h2>
+            <p className="text-lg text-slate-600 leading-relaxed mb-8">
+              Due to the sensitive nature of many operations, detailed mission
+              information is shared on a need-to-know basis. The missions
+              presented here represent a selection of our work where clients
+              have permitted public reference. For inquiries about specific
+              capabilities or past operations, please contact us directly.
+            </p>
+            <Button
+              asChild
+              className="bg-navy text-white hover:bg-navy-light"
+            >
+              <Link href="/contact">
+                Discuss Your Mission Requirements
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-navy">
+        <div className="container-wide text-center">
+          <h2 className="text-white mb-6">Ready to Plan Your Mission?</h2>
+          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+            Every successful mission starts with thorough planning and the
+            right team. Let's discuss how we can support your objectives.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-navy hover:bg-slate-100"
+            >
+              <Link href="/contact">Contact Our Team</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Link href="/services">
+                View Our Services
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
