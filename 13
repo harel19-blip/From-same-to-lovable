@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Maritime Operations - Enterprise Design System */
+    /* Primary Navy - Authority & Trust */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Navy Blue Primary */
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Slate Secondary */
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Warm Stone Accent */
+    --accent: 30 6% 63%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;
+
+    --radius: 0.375rem;
+
+    /* Custom Maritime Colors */
+    --navy-900: 222 47% 11%;
+    --navy-800: 217 33% 17%;
+    --navy-700: 215 28% 25%;
+    --slate-600: 215 16% 47%;
+    --slate-500: 215 20% 65%;
+    --slate-100: 210 40% 96%;
+    --stone-400: 30 6% 63%;
+    --stone-200: 30 8% 85%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 30 6% 63%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 215 20% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Typography Scale */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-medium tracking-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  h5 {
+    @apply text-lg font-medium;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  /* Section Containers */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .section-padding-lg {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Maritime Navy Backgrounds */
+  .bg-navy {
+    @apply bg-[hsl(222,47%,11%)];
+  }
+
+  .bg-navy-light {
+    @apply bg-[hsl(217,33%,17%)];
+  }
+
+  .bg-slate-subtle {
+    @apply bg-[hsl(210,40%,96%)];
+  }
+
+  /* Text Colors */
+  .text-navy {
+    @apply text-[hsl(222,47%,11%)];
+  }
+
+  .text-slate {
+    @apply text-[hsl(215,16%,47%)];
+  }
+
+  /* Accent Line */
+  .accent-line {
+    @apply w-16 h-1 bg-[hsl(30,6%,63%)] mb-6;
+  }
+
+  .accent-line-center {
+    @apply w-16 h-1 bg-[hsl(30,6%,63%)] mb-6 mx-auto;
+  }
+
+  /* Card Styles */
+  .card-maritime {
+    @apply bg-white border border-slate-200 hover:border-slate-300 transition-all duration-300;
+  }
+
+  .card-maritime-dark {
+    @apply bg-[hsl(217,33%,17%)] border border-[hsl(215,28%,25%)] text-white;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-[hsl(222,47%,11%)] text-white hover:bg-[hsl(217,33%,17%)] transition-colors;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[hsl(222,47%,11%)] text-[hsl(222,47%,11%)] hover:bg-[hsl(222,47%,11%)] hover:text-white transition-colors;
+  }
+
+  .btn-white {
+    @apply bg-white text-[hsl(222,47%,11%)] hover:bg-slate-100 transition-colors;
+  }
+
+  /* Hero Video Placeholder */
+  .hero-video-placeholder {
+    @apply relative w-full h-screen min-h-[600px] bg-gradient-to-br from-[hsl(222,47%,11%)] via-[hsl(217,33%,17%)] to-[hsl(215,28%,25%)];
+  }
+
+  /* Grid Layouts */
+  .grid-capabilities {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8;
+  }
+
+  .grid-missions {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    direction: rtl;
+  }
+
+  [dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  [dir="rtl"] .text-right {
+    text-align: left;
+  }
+}
+
+@layer utilities {
+  /* Fade animations for sections */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Subtle hover lift */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  /* Image overlay for hero */
+  .overlay-gradient {
+    @apply absolute inset-0 bg-gradient-to-r from-[hsl(222,47%,11%)/0.9] via-[hsl(222,47%,11%)/0.7] to-transparent;
+  }
+
+  .overlay-dark {
+    @apply absolute inset-0 bg-[hsl(222,47%,11%)/0.6];
+  }
+}
