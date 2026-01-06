@@ -1,0 +1,83 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Maritime Operations",
+  description: "Privacy policy for Maritime Operations.",
+};
+
+export default function PrivacyPage() {
+  return (
+    <>
+      {/* PAGE HERO */}
+      <section className="relative bg-navy py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="container-wide relative">
+          <div className="max-w-3xl">
+            <div className="w-16 h-1 bg-stone-400 mb-8" />
+            <h1 className="text-white mb-6">Privacy Policy</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              How we collect, use, and protect your information.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTENT */}
+      <section className="section-padding bg-white">
+        <div className="container-narrow">
+          <div className="prose prose-slate max-w-none">
+            <p className="text-slate-600 mb-8">
+              Last updated: January 2026
+            </p>
+
+            <h2 className="text-navy">Information We Collect</h2>
+            <p className="text-slate-600">
+              [Privacy policy content placeholder. This section would detail
+              the types of information collected, including personal data,
+              usage data, and any cookies or tracking technologies used.]
+            </p>
+
+            <h2 className="text-navy">How We Use Your Information</h2>
+            <p className="text-slate-600">
+              [Content placeholder describing the purposes for which collected
+              information is used, including service provision, communication,
+              and improvement of services.]
+            </p>
+
+            <h2 className="text-navy">Information Sharing</h2>
+            <p className="text-slate-600">
+              [Content placeholder explaining circumstances under which
+              information may be shared with third parties, if any.]
+            </p>
+
+            <h2 className="text-navy">Data Security</h2>
+            <p className="text-slate-600">
+              [Content placeholder describing security measures implemented
+              to protect user data.]
+            </p>
+
+            <h2 className="text-navy">Your Rights</h2>
+            <p className="text-slate-600">
+              [Content placeholder explaining user rights regarding their
+              personal data, including access, correction, and deletion.]
+            </p>
+
+            <h2 className="text-navy">Contact Us</h2>
+            <p className="text-slate-600">
+              For questions about this privacy policy, please contact us at
+              contact@maritime-ops.com.
+            </p>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-slate-200">
+            <Button asChild variant="outline" className="border-navy text-navy">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
