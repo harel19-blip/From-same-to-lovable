@@ -1,0 +1,199 @@
+/**
+ * News & Insights Page
+ * Displays all maritime news articles
+ */
+
+import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, ArrowRight, ExternalLink } from "lucide-react";
+import { PageHero } from "@/components/shared";
+import { newsArticles, newsCategories } from "@/data";
+
+export const metadata: Metadata = {
+  title: "News & Insights | SouliSea",
+  description:
+    "Latest news and insights on maritime operations, rescue missions, and ocean protection from SouliSea.",
+};
+
+export default function InsightsPage() {
+  return (
+    <>
+      {/* PAGE HERO */}
+      <PageHero
+        title="News & Insights"
+        subtitle="Stay informed on the latest developments in maritime operations, rescue missions, environmental protection, and industry innovations."
+      />
+
+      {/* NEWS GRID */}
+      <section
+        className="section-padding bg-slate-50"
+        aria-labelledby="news-grid-title"
+      >
+        <div className="container-wide">
+          {/* Category Filter */}
+          <nav className="flex flex-wrap gap-3 mb-12" aria-label="Filter by category">
+            {newsCategories.map((category) => (
+              <Button
+                key={category}
+                variant={category === "All" ? "default" : "outline"}
+                className={
+                  category === "All"
+                    ? "bg-[#1a6fc9] text-white hover:bg-[#1558a8]"
+                    : "border-slate-300 text-slate-700 hover:bg-slate-100"
+                }
+              >
+                {category}
+              </Button>
+            ))}
+          </nav>
+
+          {/* Screen reader only heading */}
+          <h2 id="news-grid-title" className="sr-only">
+            News Articles
+          </h2>
+
+          {/* Articles Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+            {newsArticles.map((article) => (
+              <Card
+                key={article.id}
+                className="group bg-white border-slate-200 hover:shadow-xl transition-all duration-300 overflow-hidden"
+                role="listitem"
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt=""
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/60 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <Badge
+                    variant="secondary"
+                    className="absolute top-4 left-4 bg-white/90 text-[#0f172a] text-xs"
+                  >
+                    {article.category}
+                  </Badge>
+                </div>
+
+                <CardContent className="p-6">
+                  {/* Date & Source */}
+                  <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
+                    <span className="flex items-center">
+                      <Calendar className="w-4 h-4 me-1.5" aria-hidden="true" />
+                      <time>{article.date}</time>
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-[#0f172a] mb-3 group-hover:text-[#1a6fc9] transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                    {article.excerpt}
+                  </p>
+
+                  {/* Source & Link */}
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                    <span className="text-xs text-slate-500">
+                      Source: {article.source}
+                    </span>
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-medium text-[#1a6fc9] hover:text-[#1558a8] transition-colors"
+                    >
+                      Read More
+                      <ExternalLink className="w-4 h-4 ms-1" aria-hidden="true" />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRY FOCUS */}
+      <section
+        className="section-padding bg-white"
+        aria-labelledby="industry-focus-title"
+      >
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="w-16 h-1 bg-[#1a6fc9] mb-6 mx-auto" aria-hidden="true" />
+            <h2 id="industry-focus-title" className="text-[#0f172a] mb-6">
+              Our Industry Focus
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed mb-8">
+              We stay at the forefront of maritime industry developments,
+              continuously monitoring innovations, safety protocols, and best
+              practices that enhance our operational capabilities and service delivery.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6" role="list">
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#1a6fc9] mb-1">Safety</div>
+                <div className="text-sm text-slate-600">First Priority</div>
+              </div>
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#1a6fc9] mb-1">Innovation</div>
+                <div className="text-sm text-slate-600">Technology Integration</div>
+              </div>
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#1a6fc9] mb-1">Environment</div>
+                <div className="text-sm text-slate-600">Ocean Protection</div>
+              </div>
+              <div className="p-4 bg-slate-50 rounded-lg" role="listitem">
+                <div className="text-2xl font-semibold text-[#1a6fc9] mb-1">Excellence</div>
+                <div className="text-sm text-slate-600">Professional Standards</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-[#0f172a]" aria-labelledby="cta-title">
+        <div className="container-wide text-center">
+          <h2 id="cta-title" className="text-white mb-6">Stay Informed</h2>
+          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+            Follow our updates and insights as we continue to advance maritime
+            operations excellence worldwide.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-[#0f172a] hover:bg-slate-100"
+            >
+              <Link href="/contact">Contact Our Team</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Link href="/services">
+                Explore Our Services
+                <ArrowRight className="w-4 h-4 ms-2" aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
