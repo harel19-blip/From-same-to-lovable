@@ -1,0 +1,86 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Maritime Operations",
+  description: "Terms of service for Maritime Operations.",
+};
+
+export default function TermsPage() {
+  return (
+    <>
+      {/* PAGE HERO */}
+      <section className="relative bg-navy py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="container-wide relative">
+          <div className="max-w-3xl">
+            <div className="w-16 h-1 bg-stone-400 mb-8" />
+            <h1 className="text-white mb-6">Terms of Service</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              Terms and conditions governing use of our services.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTENT */}
+      <section className="section-padding bg-white">
+        <div className="container-narrow">
+          <div className="prose prose-slate max-w-none">
+            <p className="text-slate-600 mb-8">
+              Last updated: January 2026
+            </p>
+
+            <h2 className="text-navy">Acceptance of Terms</h2>
+            <p className="text-slate-600">
+              [Terms of service content placeholder. This section would detail
+              the acceptance requirements and binding nature of the agreement.]
+            </p>
+
+            <h2 className="text-navy">Services Description</h2>
+            <p className="text-slate-600">
+              [Content placeholder describing the services offered and any
+              limitations or restrictions on use.]
+            </p>
+
+            <h2 className="text-navy">User Obligations</h2>
+            <p className="text-slate-600">
+              [Content placeholder explaining user responsibilities and
+              prohibited activities.]
+            </p>
+
+            <h2 className="text-navy">Intellectual Property</h2>
+            <p className="text-slate-600">
+              [Content placeholder regarding ownership and use of intellectual
+              property.]
+            </p>
+
+            <h2 className="text-navy">Limitation of Liability</h2>
+            <p className="text-slate-600">
+              [Content placeholder explaining liability limitations and
+              disclaimers.]
+            </p>
+
+            <h2 className="text-navy">Governing Law</h2>
+            <p className="text-slate-600">
+              [Content placeholder specifying applicable law and jurisdiction.]
+            </p>
+
+            <h2 className="text-navy">Contact Information</h2>
+            <p className="text-slate-600">
+              For questions about these terms, please contact us at
+              contact@maritime-ops.com.
+            </p>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-slate-200">
+            <Button asChild variant="outline" className="border-navy text-navy">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
