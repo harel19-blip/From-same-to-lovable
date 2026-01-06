@@ -1,0 +1,321 @@
+/**
+ * Work With Us Page
+ * Recruitment page with CV upload form
+ */
+
+import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Ship,
+  LifeBuoy,
+  Cpu,
+  Shield,
+  Target,
+  Upload,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
+import { PageHero } from "@/components/shared";
+
+export const metadata: Metadata = {
+  title: "Work With Us | SouliSea",
+  description:
+    "Join SouliSea's professional maritime team. We seek experienced professionals for rescue operations, offshore missions, and environmental projects worldwide.",
+};
+
+// Data: Expertise areas we're looking for
+const expertiseAreas = [
+  {
+    id: "maritime",
+    icon: Ship,
+    title: "Maritime Specialists",
+    description:
+      "Experienced mariners, captains, and offshore operations professionals with proven track records in complex maritime environments.",
+  },
+  {
+    id: "rescue",
+    icon: LifeBuoy,
+    title: "Rescue Professionals",
+    description:
+      "Emergency responders, search and rescue specialists, and crisis management experts ready for high-stakes operations.",
+  },
+  {
+    id: "technical",
+    icon: Cpu,
+    title: "Technical Experts",
+    description:
+      "Marine engineers, ROV operators, navigation specialists, and maritime technology professionals.",
+  },
+];
+
+// Data: Professional requirements
+const professionalRequirements = [
+  "Proven experience in maritime operations or related fields",
+  "Relevant professional certifications and qualifications",
+  "Ability to operate effectively in demanding offshore conditions",
+  "Strong team collaboration and communication skills",
+  "Commitment to safety protocols and professional standards",
+  "Flexibility for international deployment and varied mission durations",
+];
+
+// Data: Expertise select options
+const expertiseOptions = [
+  { value: "", label: "Select your expertise" },
+  { value: "maritime", label: "Maritime Operations" },
+  { value: "rescue", label: "Rescue & Emergency Response" },
+  { value: "engineering", label: "Marine Engineering" },
+  { value: "technical", label: "Technical Specialist" },
+  { value: "environmental", label: "Environmental Operations" },
+  { value: "other", label: "Other" },
+];
+
+export default function WorkWithUsPage() {
+  return (
+    <>
+      {/* PAGE HERO */}
+      <PageHero
+        title="Work With Us"
+        subtitle="SouliSea seeks experienced maritime professionals for international operations. If you bring specialized expertise and a commitment to excellence, we want to hear from you."
+      />
+
+      {/* WHO WE ARE LOOKING FOR */}
+      <section
+        className="section-padding bg-white"
+        aria-labelledby="who-we-seek-title"
+      >
+        <div className="container-wide">
+          <header className="max-w-3xl mb-12">
+            <div className="w-16 h-1 bg-[#1a6fc9] mb-6" aria-hidden="true" />
+            <h2 id="who-we-seek-title" className="text-[#0f172a] mb-4">
+              Who We're Looking For
+            </h2>
+            <p className="text-lg text-slate-600">
+              We assemble mission-specific crews of vetted professionals for complex offshore operations,
+              rescue missions, and environmental projects. Every team member must demonstrate proven
+              expertise and the character to perform under pressure.
+            </p>
+          </header>
+
+          {/* Expertise Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16" role="list">
+            {expertiseAreas.map((item) => (
+              <Card key={item.id} className="bg-slate-50 border-0" role="listitem">
+                <CardContent className="p-8">
+                  <div className="w-12 h-12 bg-[#1a6fc9]/10 rounded-lg flex items-center justify-center mb-4">
+                    <item.icon className="w-6 h-6 text-[#1a6fc9]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#0f172a] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Requirements */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-xl font-semibold text-[#0f172a] mb-6">
+              Professional Requirements
+            </h3>
+            <ul className="space-y-4" role="list">
+              {professionalRequirements.map((req) => (
+                <li key={req} className="flex items-start" role="listitem">
+                  <CheckCircle2
+                    className="w-5 h-5 text-[#1a6fc9] mt-0.5 me-3 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-slate-700">{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CV UPLOAD FORM */}
+      <section
+        className="section-padding bg-slate-50"
+        aria-labelledby="apply-title"
+      >
+        <div className="container-wide">
+          <div className="max-w-2xl mx-auto">
+            <header className="text-center mb-10">
+              <div className="w-16 h-1 bg-[#1a6fc9] mb-6 mx-auto" aria-hidden="true" />
+              <h2 id="apply-title" className="text-[#0f172a] mb-4">
+                Submit Your Application
+              </h2>
+              <p className="text-lg text-slate-600">
+                Send us your CV and we'll be in touch if your profile matches our current or future mission requirements.
+              </p>
+            </header>
+
+            <Card className="bg-white border-slate-200">
+              <CardContent className="p-8">
+                <form className="space-y-6" aria-label="Application form">
+                  {/* Name Fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">First Name *</Label>
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Your first name"
+                        required
+                        className="bg-slate-50 border-slate-200"
+                        aria-required="true"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Your last name"
+                        required
+                        className="bg-slate-50 border-slate-200"
+                        aria-required="true"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      required
+                      className="bg-slate-50 border-slate-200"
+                      aria-required="true"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+1 234 567 8900"
+                      className="bg-slate-50 border-slate-200"
+                    />
+                  </div>
+
+                  {/* Expertise Select */}
+                  <div className="space-y-2">
+                    <Label htmlFor="expertise">Primary Area of Expertise *</Label>
+                    <select
+                      id="expertise"
+                      name="expertise"
+                      className="w-full h-10 px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1a6fc9]"
+                      required
+                      aria-required="true"
+                    >
+                      {expertiseOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Experience Summary */}
+                  <div className="space-y-2">
+                    <Label htmlFor="experience">Brief Experience Summary</Label>
+                    <Textarea
+                      id="experience"
+                      name="experience"
+                      placeholder="Briefly describe your relevant maritime experience and qualifications"
+                      className="bg-slate-50 border-slate-200 min-h-[100px]"
+                    />
+                  </div>
+
+                  {/* CV Upload */}
+                  <div className="space-y-2">
+                    <Label htmlFor="cv-upload">CV / Resume *</Label>
+                    <div
+                      className="border-2 border-dashed border-slate-200 rounded-lg p-8 text-center hover:border-[#1a6fc9]/50 transition-colors cursor-pointer bg-slate-50"
+                      role="button"
+                      tabIndex={0}
+                      aria-describedby="cv-help"
+                    >
+                      <Upload className="w-10 h-10 text-slate-400 mx-auto mb-3" aria-hidden="true" />
+                      <p className="text-sm text-slate-600 mb-1">
+                        Click to upload or drag and drop
+                      </p>
+                      <p id="cv-help" className="text-xs text-slate-500">
+                        PDF, DOC, or DOCX (max 10MB)
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-[#1a6fc9] text-white hover:bg-[#1558a8]"
+                  >
+                    Submit Application
+                    <ArrowRight className="w-4 h-4 ms-2" aria-hidden="true" />
+                  </Button>
+
+                  <p className="text-xs text-slate-500 text-center">
+                    By submitting this form, you consent to our review of your application
+                    and agree to be contacted regarding potential opportunities.
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section
+        className="section-padding bg-[#0f172a]"
+        aria-labelledby="values-title"
+      >
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <header>
+              <div className="w-16 h-1 bg-[#1a6fc9] mb-6" aria-hidden="true" />
+              <h2 id="values-title" className="text-white mb-6">
+                What Drives Us
+              </h2>
+              <p className="text-slate-300 leading-relaxed mb-8">
+                Every member of our team represents our commitment to safety, excellence,
+                and mission success. We operate where precision and professionalism aren't
+                optional—they're essential.
+              </p>
+            </header>
+
+            <div className="grid grid-cols-2 gap-6" role="list">
+              <article className="p-6 bg-white/5 rounded-lg border border-white/10" role="listitem">
+                <Shield className="w-8 h-8 text-[#1a6fc9] mb-3" aria-hidden="true" />
+                <h3 className="font-semibold text-white mb-2">Safety First</h3>
+                <p className="text-sm text-slate-400">
+                  No mission objective justifies compromising safety standards.
+                </p>
+              </article>
+              <article className="p-6 bg-white/5 rounded-lg border border-white/10" role="listitem">
+                <Target className="w-8 h-8 text-[#1a6fc9] mb-3" aria-hidden="true" />
+                <h3 className="font-semibold text-white mb-2">Excellence</h3>
+                <p className="text-sm text-slate-400">
+                  Our performance standards are non-negotiable.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
