@@ -1,0 +1,237 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Anchor,
+  TreePine,
+  LifeBuoy,
+  Microscope,
+  ChevronRight,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sectors | Maritime Operations",
+  description:
+    "Specialized maritime expertise across offshore, environmental, rescue, and research sectors.",
+};
+
+const sectors = [
+  {
+    id: "offshore",
+    icon: Anchor,
+    title: "Offshore & Maritime",
+    subtitle: "Deep-sea operations and coastal infrastructure support",
+    description:
+      "We support the global offshore industry with specialized maritime services. From energy platform logistics to marine construction support, our teams operate in the most demanding offshore environments.",
+    applications: [
+      "Offshore energy platform support",
+      "Marine construction logistics",
+      "Port and harbor operations",
+      "Vessel management and support",
+      "Subsea operations coordination",
+      "Heavy lift and transport support",
+    ],
+    clients: "Energy companies, marine contractors, port authorities, shipping operators",
+  },
+  {
+    id: "environmental",
+    icon: TreePine,
+    title: "Environmental & Sustainability",
+    subtitle: "Ocean protection and conservation operations",
+    description:
+      "Dedicated to protecting marine environments, we execute environmental monitoring, cleanup operations, and sustainability initiatives that balance operational needs with ecological responsibility.",
+    applications: [
+      "Environmental monitoring missions",
+      "Oil spill response and cleanup",
+      "Marine ecosystem assessments",
+      "Pollution prevention operations",
+      "Conservation project support",
+      "Regulatory compliance support",
+    ],
+    clients: "Government agencies, conservation organizations, energy companies, research institutions",
+  },
+  {
+    id: "rescue",
+    icon: LifeBuoy,
+    title: "Rescue & Emergency",
+    subtitle: "Life-saving operations and crisis response",
+    description:
+      "When emergencies occur at sea, rapid and professional response is critical. Our rescue and emergency response capabilities are designed for the most demanding scenarios—saving lives is our priority.",
+    applications: [
+      "Open-sea rescue operations",
+      "Emergency vessel response",
+      "Medical evacuation support",
+      "Search and rescue coordination",
+      "Disaster response deployment",
+      "Crisis management support",
+    ],
+    clients: "Maritime authorities, insurance providers, vessel operators, humanitarian organizations",
+  },
+  {
+    id: "research",
+    icon: Microscope,
+    title: "Research & Technology",
+    subtitle: "Innovation-driven maritime missions",
+    description:
+      "Supporting the frontier of maritime technology and research. We provide operational support for research expeditions, technology deployments, and innovation-driven missions that push boundaries.",
+    applications: [
+      "Research expedition support",
+      "Technology deployment at sea",
+      "Data collection missions",
+      "ROV and drone operations",
+      "Scientific platform logistics",
+      "Communications infrastructure",
+    ],
+    clients: "Research institutions, technology companies, government agencies, universities",
+  },
+];
+
+export default function SectorsPage() {
+  return (
+    <>
+      {/* PAGE HERO [CORE] */}
+      <section className="relative bg-navy py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="container-wide relative">
+          <div className="max-w-3xl">
+            <div className="w-16 h-1 bg-stone-400 mb-8" />
+            <h1 className="text-white mb-6">Sectors We Serve</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              Specialized maritime expertise across industries that demand
+              reliability, safety, and operational excellence. Each sector
+              benefits from our full range of capabilities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTOR OVERVIEW */}
+      <section className="section-padding bg-slate-50">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {sectors.map((sector) => (
+              <a
+                key={sector.id}
+                href={`#${sector.id}`}
+                className="group p-6 bg-white rounded-lg border border-slate-200 hover:border-navy hover:shadow-md transition-all text-center"
+              >
+                <sector.icon className="w-10 h-10 text-navy mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h4 className="font-medium text-navy mb-2">{sector.title}</h4>
+                <p className="text-sm text-slate-500">{sector.subtitle}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTOR DETAILS [CORE] */}
+      {sectors.map((sector, index) => (
+        <section
+          key={sector.id}
+          id={sector.id}
+          className={`section-padding ${index % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
+        >
+          <div className="container-wide">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Content */}
+              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                <div className="accent-line" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 bg-navy/10 rounded-lg flex items-center justify-center">
+                    <sector.icon className="w-7 h-7 text-navy" />
+                  </div>
+                </div>
+                <h2 className="text-navy mb-2">{sector.title}</h2>
+                <p className="text-lg text-slate-600 font-medium mb-4">
+                  {sector.subtitle}
+                </p>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  {sector.description}
+                </p>
+
+                {/* Typical Clients */}
+                <div className="p-4 bg-navy/5 rounded-lg mb-6">
+                  <h5 className="text-sm font-semibold text-navy uppercase tracking-wider mb-2">
+                    Typical Clients
+                  </h5>
+                  <p className="text-sm text-slate-600">{sector.clients}</p>
+                </div>
+
+                <Button
+                  asChild
+                  className="bg-navy text-white hover:bg-navy-light"
+                >
+                  <Link href="/contact">
+                    Discuss Your Requirements
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Applications */}
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                <Card className="bg-slate-50 border-slate-200">
+                  <CardContent className="p-8">
+                    <h4 className="text-lg font-semibold text-navy mb-6">
+                      Key Applications
+                    </h4>
+                    <ul className="space-y-4">
+                      {sector.applications.map((application) => (
+                        <li key={application} className="flex items-start">
+                          <CheckCircle2 className="w-5 h-5 text-navy mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-slate-700">{application}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Image placeholder */}
+                <div className="mt-6 aspect-video bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg overflow-hidden">
+                  <div className="w-full h-full bg-navy/10 flex items-center justify-center">
+                    <span className="text-slate-500">Sector Image</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* CTA */}
+      <section className="section-padding bg-navy">
+        <div className="container-wide text-center">
+          <h2 className="text-white mb-6">Serving Your Sector</h2>
+          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+            No matter your industry, if your operations require maritime
+            expertise, we can help. Contact us to discuss how our capabilities
+            align with your sector's specific needs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-navy hover:bg-slate-100"
+            >
+              <Link href="/contact">Contact Our Team</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Link href="/services">
+                View Our Services
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
