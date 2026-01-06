@@ -1,0 +1,75 @@
+"use client";
+
+/**
+ * MissionStatement Component
+ * Displays the company mission and key statistics
+ * Uses shared StatCard component for consistent styling
+ */
+
+import { useTranslations } from "next-intl";
+import { Anchor, Globe2, Shield, Users } from "lucide-react";
+import { StatCard } from "@/components/shared";
+
+export function MissionStatement() {
+  const t = useTranslations();
+
+  const stats = [
+    {
+      icon: Anchor,
+      value: t("mission.stats.missions"),
+      label: t("mission.stats.missionsLabel"),
+    },
+    {
+      icon: Globe2,
+      value: t("mission.stats.countries"),
+      label: t("mission.stats.countriesLabel"),
+    },
+    {
+      icon: Users,
+      value: t("mission.stats.professionals"),
+      label: t("mission.stats.professionalsLabel"),
+    },
+    {
+      icon: Shield,
+      value: t("mission.stats.safety"),
+      label: t("mission.stats.safetyLabel"),
+    },
+  ];
+
+  return (
+    <section
+      className="section-padding bg-white"
+      aria-labelledby="mission-title"
+    >
+      <div className="container-wide">
+        {/* Statement */}
+        <header className="max-w-4xl mx-auto text-center mb-16">
+          <div className="accent-line-center" aria-hidden="true" />
+          <h2 id="mission-title" className="text-[#0f172a] mb-6">
+            {t("mission.title")}
+          </h2>
+          <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+            {t("mission.description")}
+          </p>
+        </header>
+
+        {/* Statistics Grid */}
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+          role="list"
+          aria-label="Key statistics"
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} role="listitem">
+              <StatCard
+                icon={stat.icon}
+                value={stat.value}
+                label={stat.label}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
