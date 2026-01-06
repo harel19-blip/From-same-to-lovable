@@ -1,0 +1,83 @@
+"use client";
+
+/**
+ * CapabilitiesSection Component
+ * Displays core service capabilities
+ * Uses shared data and maintains consistent styling
+ */
+
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
+import { capabilities } from "@/data";
+
+export function CapabilitiesSection() {
+  const t = useTranslations();
+
+  return (
+    <section
+      className="section-padding bg-slate-50"
+      aria-labelledby="capabilities-title"
+    >
+      <div className="container-wide">
+        {/* Section Header */}
+        <header className="max-w-2xl mb-12">
+          <div className="w-16 h-1 bg-[#1a6fc9] mb-6" aria-hidden="true" />
+          <h2 id="capabilities-title" className="text-[#0f172a] mb-4">
+            {t("capabilities.title")}
+          </h2>
+          <p className="text-lg text-slate-600">
+            {t("capabilities.subtitle")}
+          </p>
+        </header>
+
+        {/* Capabilities Grid */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          role="list"
+        >
+          {capabilities.map((capability) => (
+            <Card
+              key={capability.id}
+              className="group bg-white border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300"
+              role="listitem"
+            >
+              <CardContent className="p-8">
+                {/* Icon */}
+                <div className="flex items-center justify-center w-14 h-14 bg-[#1a6fc9]/10 rounded-lg mb-6 group-hover:bg-[#1a6fc9] group-hover:scale-105 transition-all duration-300">
+                  <capability.icon
+                    className="w-7 h-7 text-[#1a6fc9] group-hover:text-white transition-colors"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-[#0f172a] mb-3">
+                  {t(capability.titleKey)}
+                </h3>
+
+                {/* Description */}
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  {t(capability.descriptionKey)}
+                </p>
+
+                {/* Link */}
+                <Link
+                  href={capability.href}
+                  className="inline-flex items-center text-sm font-medium text-[#1a6fc9] hover:text-[#1558a8] transition-colors"
+                >
+                  {t("common.learnMore")}
+                  <ChevronRight
+                    className="w-4 h-4 ms-1 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
